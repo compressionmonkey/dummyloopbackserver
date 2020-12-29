@@ -7,10 +7,10 @@ const config = {
   connector: 'mongodb',
   url: process.env.URL,
   host: 'STS-1300',
-  port: 27017,
-  user: 'Kelden',
+  port: process.env.PORT,
+  user: process.env.USER,
   password: process.env.PASSWORD,
-  database: 'test',
+  database: process.env.DATABASE,
   useNewUrlParser: true
 };
 
