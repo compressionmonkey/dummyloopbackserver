@@ -59,6 +59,7 @@ export class UserController {
     @requestBody(CredentialsRequestBody) creditionals: Credentials
   ): Promise<{token: string}> {
     const user = await this.userService.verifyCredentials(creditionals);
+    console.log('kayyy', user)
     const userProfile = this.userService.convertToUserProfile(user);
 
     const token = await this.jwtService.generateToken(userProfile);
@@ -80,6 +81,7 @@ export class UserController {
   async whoAmI(
     @inject(SecurityBindings.USER) currentUserProfile: UserProfile
   ): Promise<string> {
+    console.log('here')
     return currentUserProfile[securityId];
   }
 

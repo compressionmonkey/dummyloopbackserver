@@ -36,12 +36,15 @@ export class MySequence implements SequenceHandler {
     try {
       const {request, response} = context;
       const route = this.findRoute(request);
+      console.log('jau', route)
       await this.authenticateRequest(request);
       const args = await this.parseParams(request, route);
+      console.log('kel', args)
       const result = await this.invoke(route, args);
       this.send(response, result);
     }
     catch (err) {
+      console.log('may', err.code)
       if (
         err.code === AUTHENTICATION_STRATEGY_NOT_FOUND ||
         err.code === USER_PROFILE_NOT_FOUND
