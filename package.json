@@ -48,13 +48,19 @@
     "!*/__tests__"
   ],
   "dependencies": {
+    "@loopback/authentication": "^7.0.5",
+    "@loopback/authentication-jwt": "^0.7.5",
+    "@loopback/authorization": "^0.7.5",
     "@loopback/boot": "^3.1.1",
     "@loopback/core": "^2.13.0",
     "@loopback/repository": "^3.2.1",
     "@loopback/rest": "^9.1.0",
     "@loopback/rest-explorer": "^3.0.4",
+    "@loopback/security": "^0.3.5",
     "@loopback/service-proxy": "^3.0.4",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
+    "lodash": "^4.17.20",
     "loopback-connector-mongodb": "^5.5.0",
     "loopback-connector-rest": "^3.7.0",
     "tslib": "^2.0.0"
