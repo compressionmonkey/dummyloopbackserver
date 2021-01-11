@@ -2,9 +2,8 @@ import {authenticate, TokenService} from '@loopback/authentication';
 import {
   Credentials, MyUserService,
   TokenServiceBindings,
-
-
-  User, UserRepository,
+  User,
+  UserRepository,
   UserServiceBindings
 } from '@loopback/authentication-jwt';
 import {inject} from '@loopback/core';
@@ -34,7 +33,7 @@ export class UserController {
     @inject(TokenServiceBindings.TOKEN_SERVICE) public jwtService: TokenService,
     @inject(UserServiceBindings.USER_SERVICE) public userService: MyUserService,
     @inject(SecurityBindings.USER, {optional: true}) public user: UserProfile,
-    @repository(UserRepository) protected userRepository: UserRepository,
+    @repository(UserServiceBindings.USER_REPOSITORY) protected userRepository: UserRepository,
   ) { }
   @post('/login', {
     responses: {
@@ -58,6 +57,7 @@ export class UserController {
   async login(
     @requestBody(CredentialsRequestBody) creditionals: Credentials
   ): Promise<{token: string}> {
+    console.log('hekkkkk')
     const user = await this.userService.verifyCredentials(creditionals);
     console.log('kayyy', user)
     const userProfile = this.userService.convertToUserProfile(user);

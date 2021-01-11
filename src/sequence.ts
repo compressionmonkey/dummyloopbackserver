@@ -5,9 +5,9 @@ import {
   USER_PROFILE_NOT_FOUND
 } from '@loopback/authentication';
 import {
-  Context,
-  inject
+  Context
 } from '@loopback/context';
+import {inject} from '@loopback/core';
 // import {MiddlewareSequence} from '@loopback/rest';
 import {
   FindRoute,
@@ -39,9 +39,11 @@ export class MySequence implements SequenceHandler {
       console.log('jau', route)
       await this.authenticateRequest(request);
       const args = await this.parseParams(request, route);
-      console.log('kel', args)
+      console.log('kel', args, response, await this.invoke(route, args))
       const result = await this.invoke(route, args);
+      console.log('pop', result, response)
       this.send(response, result);
+      console.log('done1')
     }
     catch (err) {
       console.log('may', err.code)
@@ -52,6 +54,7 @@ export class MySequence implements SequenceHandler {
         Object.assign(err, {statusCode: 401});
       }
       this.reject(context, err)
+      console.log('done2')
     }
   }
 }
